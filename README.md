@@ -6,14 +6,14 @@ A Web application companion for [JoplinApp](https://joplinapp.org)
 
 :snail: The project is being rewritten
 
-:ambulance: You can still get the previous version by checkouting the [vuejs branch](https://github.com/foxmask/joplin-web/tree/vuejs), but I won't maintain it anymore.
+:ambulance: You can still get the previous version by checkouting the [vuejs branch](https://gitlab.com/annyong/joplin-web/-/tree/vuejs), but I won't maintain it anymore.
 
 ## :package: Installation
 
 ### Requirements
 
 * :snake: Python >= 3.8
-* [joplin-api](https://github.com/foxmask/joplin-api)
+* [joplin-api](https://gitlab.com/annyong/joplin-api)
 * :horse: [Django](https://www.djangoprojects.com)
 
 ### Installation
@@ -22,7 +22,7 @@ A Web application companion for [JoplinApp](https://joplinapp.org)
 python3 -m venv joplin-web
 cd joplin-web
 source bin/activate
-git clone https://github.com/foxmask/joplin-web
+git clone https://gitlab.com/annyong/joplin-web
 cd joplin-web
 pip install -r requirements.txt
 ```
@@ -63,3 +63,6 @@ Django version 3.1.2, using settings 'joplin_web.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
+
+
+(Image credits to [Emojipedia](https://emojipedia.org/))
