@@ -3,6 +3,7 @@
    joplin-web
 """
 from django.conf import settings
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -79,7 +80,8 @@ def edit_note_and_tags(request, note_id, *args, **kwargs):
             data = dict()
             data['tags'] = form.cleaned_data['tags']
             res = joplin.update_note(note_id=note_id, title=title, body=text, parent_id=parent_id, **data)
-            # res = joplin.update_note_tags(note_id=note_id, title=title, body=text, parent_id=folder, **data)
+            if res.status_code == 200:
+                messages.add_message(request, messages.INFO, "Note updated successfully")
     else:
         form = NoteForm()
         tags_list = []

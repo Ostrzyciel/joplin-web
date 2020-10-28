@@ -10,4 +10,3 @@ def date_to_timestamp(value):
     utc = arrow.get(value)
     local = utc.to(settings.USE_TZ)
     return local
-

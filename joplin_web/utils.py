@@ -93,4 +93,3 @@ def nb_notes_by_folder(folders):
         data.append(item)
     logger.debug(data)
     return data
-

@@ -4,7 +4,6 @@
 """
 from django.conf import settings
 from django.http.response import JsonResponse
-from django.urls import reverse
 from joplin_api import JoplinApiSync
 from joplin_web.utils import nb_notes_by_tag, nb_notes_by_folder
 import logging

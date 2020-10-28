@@ -25,7 +25,7 @@ def get_folders():
     my_folders = []
     for folder in folders:
         my_folders.append((folder['id'], folder['title']))
-        #if 'children' in folder:
+        # if 'children' in folder:
         #    my_folders.append(get_children_folders(my_folders, folder['children']))
 
     return my_folders
@@ -62,4 +62,3 @@ class FolderForm(forms.Form):
 
 class TagForm(forms.Form):
     title = forms.CharField(widget=forms.TextInput({'class': 'form-control', 'placeholder': 'Title'}))
-

@@ -29,5 +29,3 @@ urlpatterns = [
     path('folders', get_folders),
     path('tags', get_tags),
 ]
-
-
