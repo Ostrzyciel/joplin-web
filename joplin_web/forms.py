@@ -23,7 +23,7 @@ def get_folders():
     folders = joplin.get_folders().json()
 
     my_folders = []
-    for folder in folders:
+    for folder in folders['items']:
         my_folders.append((folder['id'], folder['title']))
         # if 'children' in folder:
         #    my_folders.append(get_children_folders(my_folders, folder['children']))
@@ -38,8 +38,9 @@ def get_tags():
     tags = joplin.get_tags().json()
 
     my_tags = []
-    for tag in tags:
-        my_tags.append((tag['id'], tag['title']))
+    if 'items' in tags:
+        for tag in tags['items']:
+            my_tags.append((tag['id'], tag['title']))
 
     return my_tags
 

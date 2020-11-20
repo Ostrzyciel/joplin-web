@@ -40,7 +40,7 @@ def home(request, *args, **kwargs):
             form = NoteForm()
     else:
         form = NoteForm()
-
+    console.print(len(notes))
     context = {"notes": notes, "form": form, 'form_tag': form_tag, 'form_folder': form_folder}
 
     return render(request, template_name, context)
@@ -85,14 +85,14 @@ def edit_note_and_tags(request, note_id, *args, **kwargs):
     else:
         form = NoteForm()
         tags_list = []
-        for tag in tags.json():
+        for tag in tags.json()['items']:
             tags_list.append(tag['id'])
         form.initial['tags'] = tags_list
         form.initial['parent_id'] = data['parent_id']
         form.initial['title'] = data['title']
         form.initial['text'] = data['body']
 
-    context = {"notes": notes.json(),
+    context = {"notes": notes.json()['items'],
                "note": note,
                "note_id": note_id,
                "folder_id": folder_id,
@@ -111,8 +111,9 @@ def notes_folder(request, folder_id, *args, **kwargs):
     """
     template_name = "index.html"
     res = joplin.get_folders_notes(folder_id)
+    notes = res.json()['items'] if 'items' in res.json() else []
     form = NoteForm()
-    context = {"notes": res.json(), "form": form, 'folder_id': folder_id}
+    context = {"notes": notes, "form": form, 'folder_id': folder_id}
     return render(request, template_name, context)
 
 
@@ -125,8 +126,9 @@ def notes_tag(request, tag_id, *args, **kwargs):
     """
     template_name = "index.html"
     res = joplin.get_tags_notes(tag_id)
+    notes = res.json()['items'] if 'items' in res.json() else []
     form = NoteForm()
-    context = {"notes": res.json(), "form": form, 'tag_id': tag_id}
+    context = {"notes": notes, "form": form, 'tag_id': tag_id}
 
     return render(request, template_name, context)
 

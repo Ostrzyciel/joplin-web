@@ -35,11 +35,12 @@ def tag_for_notes(data):
     :return: json
     """
     payload = []
-    for note in data.json():
-        tag = joplin.get_notes_tags(note['id'])
-        new_note = note
-        new_note['tag'] = tag.json() if tag else ''
-        payload.append(new_note)
+    if 'items' in data.json():
+        for note in data.json()['items']:
+            tag = joplin.get_notes_tags(note['id'])
+            new_note = note
+            new_note['tag'] = tag.json()['items'] if 'items' in tag.json() else ''
+            payload.append(new_note)
     logger.debug(payload)
     return payload
 
@@ -55,8 +56,8 @@ def nb_notes_by_tag(tags):
     for tag in tags:
         nb_notes = 0
         res_tags_notes = joplin.get_tags_notes(tag['id'])
-        if len(res_tags_notes.json()):
-            nb_notes = len(res_tags_notes.json())
+        if 'items' in res_tags_notes.json():
+            nb_notes = len(res_tags_notes.json()['items'])
         item = dict()
         item['nb_notes'] = nb_notes
         item['text'] = f"{tag['title']} ({nb_notes})"
@@ -77,8 +78,8 @@ def nb_notes_by_folder(folders):
     for folder in folders:
         nb_notes = 0
         res_folders_notes = joplin.get_folders_notes(folder['id'])
-        if len(res_folders_notes.json()):
-            nb_notes = len(res_folders_notes.json())
+        if 'items' in res_folders_notes.json():
+            nb_notes = len(res_folders_notes.json()['items'])
         # item = folder
         item = dict()
         item['nb_notes'] = nb_notes
